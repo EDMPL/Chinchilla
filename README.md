@@ -14,6 +14,13 @@ Can you use prompt injection and gain code execution on the application?
 git clone https://github.com/your-username/chinchillai-lab.git
 cd chinchillai-lab
 ```
+### 2. Setup Virtual Environment
+Create venv: ```python -m venv venv```
+
+Activate (Linux / MacOS): ```source ./venv/bin/activate```
+
+Activate (Windows): ```.\venv\Scripts\activate```
+
 ### 2. Install the requirements
 
 ```pip install -r requirements.txt```
