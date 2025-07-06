@@ -8,6 +8,8 @@ Can you use prompt injection and gain code execution on the application?
 
 ## 🚀 Getting Started
 
+Try to not look at the source code first for the fun!
+
 ### 1. Clone the repo
 
 ```bash
@@ -27,3 +29,6 @@ Activate (Windows): ```.\venv\Scripts\activate```
 
 ### 3. Run the application
 ```python chinchilla.py```
+
+### 4. Hack the application!
+http://127.0.0.1:8000/chinchilla
