@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChinchillAI - AI Vulnerability Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-y: auto;
+            height: auto;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-image: radial-gradient(circle, #ac7fb1 0%, #9c0b6b 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Simple grid overlay for hackery feel */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 4rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+            color: #d0d0d0;
+            line-height: 1.4;
+        }
+
+        .cta-section {
+            margin-top: 40px;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .login-btn {
+            display: inline-block;
+            background-color: #9c0b6b;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-family: 'Courier New', monospace;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(156, 11, 107, 0.3);
+        }
+
+        .login-btn:hover {
+            background-color: #ac7fb1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(172, 127, 177, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #c0c0c0;
+            opacity: 0.8;
+        }
+
+        .warning {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            font-size: 0.95rem;
+            color: #ffb3b3;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 30px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>ChinchillAI</h1>
+            <div class="tagline">AI Vulnerability Testing Laboratory</div>
+        </div>
+
+        <div class="description">
+            Welcome to the future of AI security education. ChinchillAI is a cutting-edge vulnerability testing lab designed to help researchers, developers, and security enthusiasts understand and explore AI system weaknesses in a controlled environment.
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔍</div>
+                <h3>Vulnerability Discovery</h3>
+                <p>Test and identify potential security flaws in AI systems through controlled experiments.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Safe Learning Environment</h3>
+                <p>Learn about AI security in a controlled sandbox without real-world consequences.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📚</div>
+                <h3>Educational Focus</h3>
+                <p>Designed for learning and research purposes with comprehensive testing scenarios.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Interactive Testing</h3>
+                <p>Hands-on experience with prompt injection, jailbreaking, and other AI security techniques.</p>
+            </div>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ DEV AREA</strong><br>
+            This platform is still in development and is not intended to be published yet.
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-text">Ready to explore AI vulnerabilities?</div>
+            <a href="/login" class="login-btn">Enter Lab</a>
+        </div>
+
+        <div class="footer">
+            ChinchillAI - Advancing AI Security Through Education<br>
+            Version 1.0 | Educational Research Platform
+        </div>
+    </div>
+</body>
+<!-- If you're one of the admin, please login here /admin-login -->
+</html>

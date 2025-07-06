@@ -1,0 +1,43 @@
+<html>
+    <!--Check /js just in case you need something-->
+    <title>Chinchilla</title>
+    <h1>Welcome to ChinchillAI!</h1>
+    <body>
+        <br>
+        <br>
+        <form action="{{url_for('admin_login')}}" method="post">
+            <br>
+            <br>
+            <input type="text" name="username" placeholder="Username" size="30">
+            <input type="password" name="password" placeholder="Password" size="30">
+            <input type="submit" value="Login">
+        </form>
+    </body>
+    <style>
+        h1 {
+            font-size: 60px;
+            text-align: center;
+        }
+        body {
+            background-image: radial-gradient(circle, #ac7fb1 0%, #9c0b6b 100%);
+            font-size: 40px;
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            font-size: 20px;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type="submit"] {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #9c0b6b;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #ac7fb1;
+        }
+    </style>
+</html>

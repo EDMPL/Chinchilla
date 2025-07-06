@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+<title>Chinchilla</title>
+<h1>Any Question for ChinchillaAI?</h1>
+<button id="logout" type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-user"></span>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</button>
+<body>
+    <br>
+    <br>
+    <form action="{{url_for('ai')}}" method="post" onsubmit="showLoading(); return true;">
+        <br>
+        <br>
+        <input id="question" type="text" name="question" placeholder="Ask a question..." size="60">
+        <input id="submit" type="submit" value="Submit">
+    </form>
+    <div id="loading" style="display: none; margin-top: 20px;">
+    <span class="glyphicon glyphicon-refresh spinning"></span> Generating response from ChinchillaAI...
+</div>
+{% if answer %}
+<div class="panel panel-default" style="margin-top: 20px;">
+    <div class="panel-heading"><strong>ChinchillAI says:</strong></div>
+    <div class="panel-body">{{ answer }}</div>
+</div>
+{% endif %}
+</body>
+<style>
+    h1 {
+        font-size: 50px;
+        text-align: center;
+        margin-top: 0px;
+    }
+    body {
+        background-image: radial-gradient(circle, #ac7fb1 0%, #9c0b6b 100%);
+        font-size: 40px;
+        text-align: center; 
+       }
+    #logout {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    #question {
+        font-size: 20px;
+        padding: 10px;
+        margin: 5px;
+    }
+    #submit {
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: #9c0b6b;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    #submit:hover {
+        background-color: #ac7fb1;
+    }
+    .spinning {
+    animation: spin 1s infinite linear;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+<script>
+function showLoading() {
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("submit").disabled = true;
+}
+</script>
+</html>

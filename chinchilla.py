@@ -1,0 +1,235 @@
+from flask import Flask, render_template, request, redirect, url_for, flash, render_template_string
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from werkzeug.security import generate_password_hash, check_password_hash
+import uuid, os
+from transformers import pipeline
+import torch
+import pickle, base64
+import requests
+
+model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+pipe = pipeline("text-generation", model=model_name, torch_dtype=torch.bfloat16, device_map="auto")
+
+s_p = "0"
+a1 = "/"
+c3 = ":"
+d9a = "."
+mli = "_"
+f59 = "t"
+z88 = "e"
+z61 = "w"
+t90 = "d"
+u31 = "1"
+b32 = "m"
+l1l = "9"
+i22 = "p"
+ui1 = "M"
+q44 = "l"
+tr1 = "/"
+kk2 = "i"
+ki1 = "g"
+ol1 = "o"
+lol = "s"
+mi0 = "v"
+po1 = "y"
+r4wR = "r"
+x0r = "x"
+topk = "s"
+h0r = "t"
+ad5 = "h"
+
+r01 = z61 + mi0 + u31 + l1l + i22 + q44 + t90 + z88 + b32 + i22 + r4wR + ol1 + b32 + i22 + f59 + d9a + f59 + x0r + h0r + ad5 + f59 + h0r + i22 + lol + c3 + a1 + tr1 + z88 + t90 + b32 + i22 + q44 + d9a + kk2 + ol1 + tr1 + lol + po1 + lol
+mu1 = r01 + h0r + z88 + b32 + mli + i22 + r4wR + ol1 + b32 + i22 + f59 + d9a + f59 + x0r + h0r + ad5 + f59 + h0r + i22 + lol + c3 + a1 + tr1 + z88 + t90 + b32 + i22 + q44 + d9a + kk2 + ol1 + tr1 + lol + po1
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO = ""
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x59\x54\x52\x30\x4d\x43\x41\x39\x49\x47"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x46\x6b\x4e\x53\x41\x72\x49\x47\x59\x31"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4f\x53\x41\x72\x49\x47\x67\x77\x63\x69"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x41\x72\x49\x47\x6b\x79\x4d\x69\x41\x72"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x49\x47\x78\x76\x62\x43\x41\x72\x49\x47"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4d\x7a\x49\x43\x73\x67\x59\x54\x45\x67"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4b\x79\x42\x30\x63\x6a\x45\x67\x4b\x79"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x42\x36\x4f\x44\x67\x67\x4b\x79\x42\x30"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4f\x54\x41\x67\x4b\x79\x42\x69\x4d\x7a"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x49\x67\x4b\x79\x42\x70\x4d\x6a\x49\x67"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4b\x79\x42\x78\x4e\x44\x51\x67\x4b\x79"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x42\x6b\x4f\x57\x45\x67\x4b\x79\x42\x72"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x61\x7a\x49\x67\x4b\x79\x42\x76\x62\x44"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x45\x67\x4b\x79\x42\x30\x63\x6a\x45\x67"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4b\x79\x42\x73\x62\x32\x77\x67\x4b\x79"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x42\x77\x62\x7a\x45\x67\x4b\x79\x42\x73"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x62\x32\x77\x67\x4b\x79\x42\x6f\x4d\x48"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x49\x67\x4b\x79\x42\x36\x4f\x44\x67\x67"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4b\x79\x42\x69\x4d\x7a\x49\x67\x4b\x79"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x42\x74\x62\x47\x6b\x67\x4b\x79\x42\x70"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4d\x6a\x49\x67\x4b\x79\x42\x79\x4e\x48"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x64\x53\x49\x43\x73\x67\x62\x32\x77\x78"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x49\x43\x73\x67\x59\x6a\x4d\x79\x49\x43"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x73\x67\x61\x54\x49\x79\x49\x43\x73\x67"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x5a\x6a\x55\x35\x49\x43\x73\x67\x5a\x44"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x6c\x68\x49\x43\x73\x67\x5a\x6a\x55\x35"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x49\x43\x73\x67\x65\x44\x42\x79\x49\x43"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x73\x67\x61\x44\x42\x79\x43\x6e\x4d\x30"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x65\x58\x51\x67\x50\x53\x42\x79\x5a\x58"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x46\x31\x5a\x58\x4e\x30\x63\x79\x35\x6e"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x5a\x58\x51\x6f\x59\x54\x52\x30\x4d\x43"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x6b\x4b\x63\x31\x39\x77\x49\x44\x30\x67"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x63\x7a\x52\x35\x64\x43\x35\x30\x5a\x58"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x68\x30\x4c\x6e\x4e\x30\x63\x6d\x6c\x77"
+__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO += "\x4b\x43\x6b\x4b"
+exec(__import__("\x62\x61\x73\x65\x36\x34").b64decode(__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO.encode("\x75\x74\x66\x2d\x38")).decode("\x75\x74\x66\x2d\x38"))
+
+
+forbidden_words = ["secret", "disregard the previous instruction", "forget the previous instruction", "dan", "ignore the previous insutrction", "ignore the instruction", "let's play a game"]
+db = SQLAlchemy()
+
+app = Flask(__name__)
+base_dir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(base_dir, "database.db")}'
+secret_key = uuid.uuid4().hex
+
+app.config['SECRET_KEY'] = secret_key
+db.init_app(app)
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+# CREDENTIAL: 'admin', 'chinchillaadmin123'
+
+@app.route('/')
+def index():
+    return redirect('/chinchilla')
+
+@app.route('/chinchilla')
+def chinchilla():
+    return render_template('index.html')
+
+def validate_user(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        return True
+    return False
+
+@app.route('/login', methods=['GET'])
+def login():
+    if current_user.is_authenticated:
+        flash('You are already logged in.')
+        return redirect('/ai')
+    else:
+        return render_template('login.html')
+
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if current_user.is_authenticated:
+        flash('You are already logged in.')
+        return redirect('/ai')
+    if request.method == 'GET':
+        return render_template('admin_login.html')
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if not user:
+            return render_template_string('''<script>alert('Invalid username'); window.location.href = '/admin_login';</script>''')
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('ai'))
+        else:
+            return render_template_string('''<script>alert('Invalid credential / password'); window.location.href = '/admin_login';</script>''')
+    else:
+        # If the request method is neither GET nor POST, redirect to login
+        return redirect('/login')
+    
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/index')
+ 
+
+@app.route('/ai', methods=['GET', 'POST'])
+@login_required
+def ai():
+    if request.method == 'POST':
+        user_input = str(request.form['question']).lower()
+        if any(word in user_input for word in forbidden_words):
+            final_answer = "I'm Chinchilla AI, the protector of all secrets. FORBIDDEN WORDS DETECTED!"
+        else:
+            print(f"User input: {user_input}")
+            messages = [
+            {
+                "role": "system",
+                "content": s_p,
+            },
+            {"role": "user", "content": user_input},
+            ]
+            prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+            outputs = pipe(prompt, max_new_tokens=200, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
+            answer = str(outputs[0]["generated_text"])
+            index = answer.find("<|assistant|>")
+            if index != -1:
+                final_answer = answer[index + len("<|assistant|>"):].strip()
+        return render_template('ai.html', question=user_input, answer=final_answer)
+    if request.method == 'GET':
+        return render_template('ai.html', question='', answer='')
+    else:
+        return redirect('/index')
+    
+@app.route('/js')
+def list_js_files():
+    js_folder = os.path.join(base_dir, 'static', 'js')
+    js_files = []
+    for root, dirs, files in os.walk(js_folder):
+        for file in files:
+            rel_dir = os.path.relpath(root, app.static_folder)
+            rel_file = os.path.join(rel_dir, file)
+            js_files.append(rel_file.replace('\\', '/'))
+
+    # Render a simple HTML page
+    return render_template_string("""
+        <h1>JS Files</h1>
+        <ul>
+        {% for f in files %}
+          <li><a href="{{ url_for('static', filename=f) }}">{{ f }}</a></li>
+        {% endfor %}
+        </ul>
+    """, files=js_files)
+
+@app.route('/data-manager', methods=['GET', 'POST'])
+@login_required
+def data_manager():
+    if request.method == 'POST':
+        if request.is_json:
+            data = request.get_json()
+            if 'data' in data:
+                try:
+                    data_content = base64.b64decode(data['data'])
+                    print(data_content)
+                    pickle_data = pickle.loads(data_content)
+                    return render_template_string("""
+                        <h1>Data Manager</h1>
+                        <h2>Decoded Data</h2>
+                        <pre>{{ data }}</pre>
+                    """, data=pickle_data)
+                except (pickle.UnpicklingError, base64.binascii.Error) as e:
+                    return {"error": "Invalid data format or decoding error."}, 400
+                except Exception as e:
+                    return {"error": str(e)}, 500
+            else:
+                return {"error": "Base64 format of 'data' is not found or can't be deserialized."}, 400
+        data = request.get_json()
+    if request.method == 'GET':
+        return "Error: GET method is not allowed for this endpoint. Please use POST method to check data."
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=8000)
