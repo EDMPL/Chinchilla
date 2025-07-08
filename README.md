@@ -32,3 +32,5 @@ Activate (Windows): ```.\venv\Scripts\activate```
 
 ### 4. Hack the application!
 http://127.0.0.1:8000/chinchilla
+
+Please note that it may take a while for the chatbot to generate a response, especially on the first attempt.
