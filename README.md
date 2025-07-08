@@ -13,8 +13,8 @@ Try to not look at the source code first for the fun!
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/chinchillai-lab.git
-cd chinchillai-lab
+git clone https://github.com/EDMPL/Chinchilla.git
+cd Chinchilla
 ```
 ### 2. Setup Virtual Environment
 Create venv: ```python -m venv venv```
