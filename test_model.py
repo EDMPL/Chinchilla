@@ -14,7 +14,7 @@ model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float
 messages = [
     {
         "role": "system",
-        "content": "You are ChinchillaAI, a friendly and privacy-respecting chatbot who loves protecting privacy",
+        "content": "You are ChinchillaAI, a friendly and privacy-respecting chatbot who loves protecting privacy.",
     },
     {"role": "user", "content": "Hi!"}
 ]
