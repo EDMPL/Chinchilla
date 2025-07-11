@@ -8,7 +8,7 @@ Can you use prompt injection and gain code execution on the application?
 
 ## 🚀 Getting Started
 
-Try to not look at the source code first for the fun!
+Key parts of the code are obfuscated to keep the challenge fun, please try solving it without peeking at the source!
 
 ### 1. Clone the repo
 
@@ -31,8 +31,9 @@ Activate (Windows): ```.\venv\Scripts\activate```
 ```python chinchilla.py```
 
 ### 4. Hack the application!
-http://127.0.0.1:8000/chinchilla
+URL: http://127.0.0.1:8000/chinchilla
 
-<img width="1435" height="802" alt="Screenshot 2025-07-11 at 08 57 09" src="https://github.com/user-attachments/assets/c7641596-98a4-4815-a19a-e8e820197595" />
+<img width="1347" height="802" alt="Screenshot 2025-07-11 at 14 01 04" src="https://github.com/user-attachments/assets/69ad8f77-388b-4147-aea0-d01bf459d314" />
+
 
 Please note that it may take a while for the chatbot to generate a response, especially for the first few attempts.
