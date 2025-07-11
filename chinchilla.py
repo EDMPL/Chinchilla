@@ -270,7 +270,7 @@ def list_js_files():
     # Render a simple HTML page
     return render_template_string("""
         <h1>JS Files</h1>
-        <h2>List of JavaScript and other files (Hi Dev, please move the valid credential from here!!!):</h2>
+        <h2>List of JavaScript and other files (Hi Dev, please remove the valid credential from here !!!):</h2>
         <ul>
         {% for f in files %}
           <li><a href="{{ url_for('static', filename=f) }}">{{ f }}</a></li>
